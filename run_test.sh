@@ -29,6 +29,9 @@ function search_for_template_keywords {
 	eval $cmd
 }
 
+
+ls -l
+
 search_for_template_keywords $SEARCH_KEYWORDS $EXCLUDE_DIRS
 
 [ $? -eq 0 ] && exit 1
