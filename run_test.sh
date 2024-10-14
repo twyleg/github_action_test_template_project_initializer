@@ -25,11 +25,11 @@ assert_non_empty inputs.search_KEYWORDS "$SEARCH_KEYWORDS"
 
 
 function search_for_template_keywords {
-	cmd="grep -R --line-number --ignore-case --regexp={$1} --exclude-dir={$2} /home/twyleg/dev/workspace/template_project_python"
+	cmd="grep -R --line-number --ignore-case --regexp={$1} --exclude-dir={$2} ."
 	eval $cmd
 }
 
-search_for_template_keywords $SEARCH_KEYWORDS $EXCLUDE_DIRS  
+search_for_template_keywords $SEARCH_KEYWORDS $EXCLUDE_DIRS
 
 [ $? -eq 0 ] && exit 1
 
