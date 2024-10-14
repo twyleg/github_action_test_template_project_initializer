@@ -33,7 +33,7 @@ search_for_template_keywords() {
 ls -l
 
 search_for_template_keywords $SEARCH_KEYWORDS $EXCLUDE_DIRS
-echo $?
+# echo $?
 
 
 [ $? -eq 0 ] && exit 1
