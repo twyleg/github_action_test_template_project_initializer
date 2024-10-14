@@ -1,0 +1,13 @@
+name: 'test-template-project-initializer'
+description: 'Check if the template project initializer missed anything'
+inputs:
+  search_keywords:
+    description: 'Comma seperated list of keywords to run a recursive fulltext search on.'
+    required: true
+  exclude_dirs:
+    description: 'Comma seperated list of dirs to exclude from fulltext search of keywords.'
+    default: ""
+
+runs:
+  using: docker
+  image: Dockerfile
