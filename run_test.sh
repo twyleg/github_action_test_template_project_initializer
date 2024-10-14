@@ -25,7 +25,7 @@ assert_non_empty inputs.search_KEYWORDS "$SEARCH_KEYWORDS"
 
 
 function search_for_template_keywords {
-	cmd="grep -R --line-number --ignore-case --regexp={$1} --exclude-dir={$2} ."
+	cmd="grep -R --line-number --ignore-case --regexp={$1} --exclude-dir={$2} /github/workspace"
 	eval $cmd
 }
 
