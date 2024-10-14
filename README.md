@@ -1,43 +1,44 @@
 # Test Template Project Initializer
 
-GitHub action to publish the Ubuntu PPA (Personal Package Archives) packages.
+GitHub action to verify that [template-project-utils](https://github.com/twyleg/template_project_utils) 
+template projects are correctly initialized without leftovers from the template. 
 
 ## Inputs
 
-### `ppa_repository`
-**Required** The PPA repository, e.g. `twyleg/hello-world`.
+### `search_keywords`
+**Required** Comma separated list of keywords to run a recursive fulltext search on..
 
-### `ppa_package`
-**Required** The PPA package name, e.g. `hello-world`.
+### `exclude_dirs`
+**Optional** Comma separated list of dirs to exclude from fulltext search of keywords..
 
 
 ## Example usage
 
 ```yaml
-name: Upload PPA Package
-
+name: test_template_initializer
+run-name: test_template_initializer
 on:
-  release:
-    types: [published]
+  workflow_call:
 
-permissions:
-  contents: write
-
+  push:
+    branches:
+      - "**"
 jobs:
-  publish-ppa:
+  test_template_initializer:
     runs-on: ubuntu-latest
     steps:
-    - name: Publish PPA
-      uses: twyleg/github_action_publish_ppa_package@v2
-      with:
-        ppa_package: "hello-world"
-        ppa_repository: "twyleg/ppa"
-        deb_email: "mail@twyleg.de"
-        deb_fullname: "Torsten Wylegala"
-        gpg_private_key: ${{ secrets.PPA_GPG_PRIVATE_KEY }}
-        gpg_passphrase: ${{ secrets.PPA_GPG_PASSPHRASE }}
-        upstream_version: ${{ github.event.release.tag_name }}
-        series: "oracular"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      - run: pip install template-project-utils
+      - name: Initialize template
+        run: template_project_utils template_project_python=new_project_name template-project-python=new-project-name
+      - name: Test template initializer
+        uses: twyleg/github_action_test_template_project_initializer@master
+        with:
+          search_keywords: template_project_python,template-project-python
+          exclude_dirs: .git/,venv/,.tox/,.mypy_cache/,.idea/,build/,dist/,__pycache__/,*.egg-info/,logs/
 ```
 
 ## Example
