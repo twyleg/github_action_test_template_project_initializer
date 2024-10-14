@@ -1,4 +1,4 @@
-# Publish PPA Package
+# Test Template Project Initializer
 
 GitHub action to publish the Ubuntu PPA (Personal Package Archives) packages.
 

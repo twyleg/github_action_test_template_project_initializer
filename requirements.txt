@@ -1,0 +1,4 @@
+tox~=4.18.0
+pytest~=8.3.2
+pygit2~=1.15.1
+template-project-utils>=0.2.0
