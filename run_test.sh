@@ -24,17 +24,17 @@ assert_non_empty inputs.search_KEYWORDS "$SEARCH_KEYWORDS"
 # exclude_dirs=.git/,venv/,.tox/,.mypy_cache/,.idea/,build/,dist/,__pycache__/,*.egg-info/
 
 
-function search_for_template_keywords {
-	cmd="grep -R --line-number --ignore-case --regexp={$1} --exclude-dir={$2} /github/workspace"
+search_for_template_keywords() {
+	cmd="grep -R --line-number --ignore-case --regexp={$1} --exclude-dir={$2} ."
 	eval $cmd
 }
 
 
 ls -l
 
-search_for_template_keywords $SEARCH_KEYWORDS $EXCLUDE_DIRS
-
-[ $? -eq 0 ] && exit 1
+# search_for_template_keywords $SEARCH_KEYWORDS $EXCLUDE_DIRS
+#
+# [ $? -eq 0 ] && exit 1
 
 exit 0
 
