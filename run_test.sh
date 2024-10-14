@@ -2,7 +2,7 @@
 
 [ "$DEBUG" == 1 ] && set -x
 
-set -e
+# set -e
 
 
 SEARCH_KEYWORDS=$INPUT_SEARCH_KEYWORDS
